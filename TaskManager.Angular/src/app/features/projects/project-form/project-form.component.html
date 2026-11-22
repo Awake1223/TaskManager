@@ -1,0 +1,29 @@
+<div class="modal-backdrop" (click)="close()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <h3>{{ project ? 'Редактировать проект' : 'Новый проект' }}</h3>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-row">
+        <label>Имя *</label>
+        <input type="text" formControlName="name" maxlength="200">
+        <div class="error" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+          Имя обязательно (до 200 символов)
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label>Описание</label>
+        <textarea formControlName="description" rows="4" maxlength="2000"></textarea>
+      </div>
+
+      <div class="error" *ngIf="error">{{ error }}</div>
+
+      <div class="actions">
+        <button type="button" (click)="close()">Отмена</button>
+        <button type="submit" class="primary" [disabled]="saving">
+          {{ saving ? 'Сохранение...' : 'Сохранить' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

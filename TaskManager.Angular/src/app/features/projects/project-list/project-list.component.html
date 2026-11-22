@@ -1,0 +1,54 @@
+<div class="toolbar">
+  <h2>Проекты</h2>
+  <div class="spacer"></div>
+  <input type="text"
+         placeholder="Поиск по имени..."
+         [value]="search"
+         (input)="onSearch($any($event.target).value)" />
+  <button type="button" class="primary" (click)="openCreate()">+ Проект</button>
+</div>
+
+<div class="error" *ngIf="error">{{ error }}</div>
+
+<div *ngIf="loading">Загрузка...</div>
+
+<table class="data-table" *ngIf="!loading">
+  <thead>
+    <tr>
+      <th>Имя</th>
+      <th>Описание</th>
+      <th>Создатель</th>
+      <th>Задач</th>
+      <th>Создан</th>
+      <th style="width: 150px;">Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of projects">
+      <td>{{ p.name }}</td>
+      <td>{{ p.description || '—' }}</td>
+      <td>{{ p.createdByUserName }}</td>
+      <td>{{ p.tasksCount }}</td>
+      <td>{{ p.createdAt | date:'dd.MM.yyyy HH:mm' }}</td>
+      <td>
+        <button type="button" (click)="openEdit(p)">Изменить</button>
+        <button type="button" class="danger" (click)="delete(p)">Удалить</button>
+      </td>
+    </tr>
+    <tr *ngIf="projects.length === 0">
+      <td colspan="6" style="text-align:center;color:#888;">Проектов нет</td>
+    </tr>
+  </tbody>
+</table>
+
+<app-paginator [page]="page"
+               [pageSize]="pageSize"
+               [totalCount]="totalCount"
+               (pageChange)="onPageChange($event)">
+</app-paginator>
+
+<app-project-form *ngIf="showForm"
+                  [project]="editingProject"
+                  (saved)="onFormSaved()"
+                  (cancelled)="onFormCancelled()">
+</app-project-form>

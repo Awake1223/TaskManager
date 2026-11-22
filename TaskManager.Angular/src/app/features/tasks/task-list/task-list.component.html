@@ -1,0 +1,64 @@
+<div class="toolbar">
+  <h2>Задачи</h2>
+  <div class="spacer"></div>
+  <input type="text"
+         placeholder="Поиск по имени..."
+         [value]="search"
+         (input)="onSearch($any($event.target).value)" />
+  <button type="button" class="primary" (click)="openCreate()">+ Задача</button>
+</div>
+
+<div class="error" *ngIf="error">{{ error }}</div>
+
+<div *ngIf="loading">Загрузка...</div>
+
+<table class="data-table" *ngIf="!loading">
+  <thead>
+    <tr>
+      <th>Имя</th>
+      <th>Проект</th>
+      <th>Исполнитель</th>
+      <th>Статус</th>
+      <th>Создана</th>
+      <th style="width: 260px;">Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of tasks">
+      <td>{{ t.name }}</td>
+      <td>{{ t.projectName }}</td>
+      <td>{{ t.assigneeName || '—' }}</td>
+      <td>
+        <select [value]="t.status" (change)="changeStatus(t, $any($event.target).value)">
+          <option *ngFor="let s of statuses" [value]="s">{{ statusLabels[s] }}</option>
+        </select>
+      </td>
+      <td>{{ t.createdAt | date:'dd.MM.yyyy HH:mm' }}</td>
+      <td>
+        <button type="button" (click)="openDetails(t)">Подробнее</button>
+        <button type="button" (click)="openEdit(t)">Изменить</button>
+        <button type="button" class="danger" (click)="delete(t)">Удалить</button>
+      </td>
+    </tr>
+    <tr *ngIf="tasks.length === 0">
+      <td colspan="6" style="text-align:center;color:#888;">Задач нет</td>
+    </tr>
+  </tbody>
+</table>
+
+<app-paginator [page]="page"
+               [pageSize]="pageSize"
+               [totalCount]="totalCount"
+               (pageChange)="onPageChange($event)">
+</app-paginator>
+
+<app-task-form *ngIf="showForm"
+               [task]="editingTask"
+               (saved)="onFormSaved()"
+               (cancelled)="onFormCancelled()">
+</app-task-form>
+
+<app-task-details *ngIf="showDetails"
+                  [task]="detailsTask"
+                  (closed)="onDetailsClosed()">
+</app-task-details>

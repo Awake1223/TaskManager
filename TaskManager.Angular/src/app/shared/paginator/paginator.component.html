@@ -1,0 +1,16 @@
+<div class="paginator" *ngIf="totalCount > 0">
+  <button type="button" (click)="goTo(page - 1)" [disabled]="page === 1">‹</button>
+
+  <button type="button"
+          *ngFor="let p of pages"
+          (click)="goTo(p)"
+          [class.active]="p === page">
+    {{ p }}
+  </button>
+
+  <button type="button" (click)="goTo(page + 1)" [disabled]="page === totalPages">›</button>
+
+  <span class="info">
+    Страница {{ page }} из {{ totalPages }} (всего {{ totalCount }})
+  </span>
+</div>

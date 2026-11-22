@@ -1,0 +1,51 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: taskmanager-postgres
+    environment:
+      POSTGRES_DB: taskmanager
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d taskmanager"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: TaskManager.API/Dockerfile
+    container_name: taskmanager-api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: "http://+:8080"
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=taskmanager;Username=postgres;Password=postgres"
+      Jwt__Issuer: "TaskManager"
+      Jwt__Audience: "TaskManagerClient"
+      Jwt__Key: "super-secret-key-min-32-chars-change-me-please"
+      Jwt__ExpiryMinutes: "60"
+    ports:
+      - "5041:8080"
+    restart: unless-stopped
+
+  client:
+    build:
+      context: ./TaskManager.Angular
+      dockerfile: Dockerfile
+    container_name: taskmanager-client
+    depends_on:
+      - api
+    ports:
+      - "8081:80"
+    restart: unless-stopped
+
+volumes:
+  pgdata:

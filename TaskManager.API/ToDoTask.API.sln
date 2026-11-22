@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37710.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.API", "TaskManager.API.csproj", "{58124636-9CAB-4943-A4CF-928665FCDB65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Domain", "..\TaskManager.Domain\TaskManager.Domain.csproj", "{F430FD17-883C-4EBE-96C5-5373729F5FF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Infrastructure", "..\TaskManager.Infrastructure\TaskManager.Infrastructure.csproj", "{DC8512F4-0B00-4B5B-92F9-6CEDE5053C83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Application", "..\TaskManager.Application\TaskManager.Application.csproj", "{60C712CA-5185-4897-92C3-91EC1C15AF4D}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "TaskManager.Angular", "..\TaskManager.Angular\TaskManager.Angular.esproj", "{ECB8D73F-5837-30EE-7D66-F263FA282BB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58124636-9CAB-4943-A4CF-928665FCDB65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58124636-9CAB-4943-A4CF-928665FCDB65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58124636-9CAB-4943-A4CF-928665FCDB65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58124636-9CAB-4943-A4CF-928665FCDB65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F430FD17-883C-4EBE-96C5-5373729F5FF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F430FD17-883C-4EBE-96C5-5373729F5FF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F430FD17-883C-4EBE-96C5-5373729F5FF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F430FD17-883C-4EBE-96C5-5373729F5FF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC8512F4-0B00-4B5B-92F9-6CEDE5053C83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC8512F4-0B00-4B5B-92F9-6CEDE5053C83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC8512F4-0B00-4B5B-92F9-6CEDE5053C83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC8512F4-0B00-4B5B-92F9-6CEDE5053C83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60C712CA-5185-4897-92C3-91EC1C15AF4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60C712CA-5185-4897-92C3-91EC1C15AF4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60C712CA-5185-4897-92C3-91EC1C15AF4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60C712CA-5185-4897-92C3-91EC1C15AF4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECB8D73F-5837-30EE-7D66-F263FA282BB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECB8D73F-5837-30EE-7D66-F263FA282BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECB8D73F-5837-30EE-7D66-F263FA282BB5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{ECB8D73F-5837-30EE-7D66-F263FA282BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECB8D73F-5837-30EE-7D66-F263FA282BB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECB8D73F-5837-30EE-7D66-F263FA282BB5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {37F6DC68-795F-463B-9CF4-AE9BC4E5F854}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,29 @@
+<div class="modal-backdrop" (click)="close()">
+  <div class="modal" (click)="$event.stopPropagation()" *ngIf="task">
+    <h3>Задача: {{ task.name }}</h3>
+
+    <dl class="details">
+      <dt>Статус</dt>
+      <dd>{{ statusLabels[task.status] }}</dd>
+
+      <dt>Проект</dt>
+      <dd>{{ task.projectName }}</dd>
+
+      <dt>Исполнитель</dt>
+      <dd>{{ task.assigneeName || '— не назначен —' }}</dd>
+
+      <dt>Описание</dt>
+      <dd class="pre">{{ task.description || '—' }}</dd>
+
+      <dt>Создана</dt>
+      <dd>{{ task.createdAt | date:'dd.MM.yyyy HH:mm' }}</dd>
+
+      <dt>Обновлена</dt>
+      <dd>{{ task.updatedAt ? (task.updatedAt | date:'dd.MM.yyyy HH:mm') : '—' }}</dd>
+    </dl>
+
+    <div class="actions">
+      <button type="button" class="primary" (click)="close()">Закрыть</button>
+    </div>
+  </div>
+</div>

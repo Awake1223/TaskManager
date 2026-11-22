@@ -1,0 +1,42 @@
+<div class="modal-backdrop" (click)="close()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <h3>{{ task ? 'Редактировать задачу' : 'Новая задача' }}</h3>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-row">
+        <label>Имя *</label>
+        <input type="text" formControlName="name" maxlength="200">
+      </div>
+
+      <div class="form-row">
+        <label>Описание</label>
+        <textarea formControlName="description" rows="3" maxlength="2000"></textarea>
+      </div>
+
+      <div class="form-row">
+        <label>Проект *</label>
+        <select formControlName="projectId">
+          <option value="">— выберите проект —</option>
+          <option *ngFor="let p of projects" [value]="p.id">{{ p.name }}</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Исполнитель</label>
+        <select formControlName="assigneeId">
+          <option [ngValue]="null">— не назначен —</option>
+          <option *ngFor="let u of users" [ngValue]="u.id">{{ u.firstName }} {{ u.lastName }}</option>
+        </select>
+      </div>
+
+      <div class="error" *ngIf="error">{{ error }}</div>
+
+      <div class="actions">
+        <button type="button" (click)="close()">Отмена</button>
+        <button type="submit" class="primary" [disabled]="saving">
+          {{ saving ? 'Сохранение...' : 'Сохранить' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

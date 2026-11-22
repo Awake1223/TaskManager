@@ -1,0 +1,9 @@
+.toolbar input[type="text"] {
+  width: 240px;
+}
+
+.data-table td button {
+  margin-right: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+}

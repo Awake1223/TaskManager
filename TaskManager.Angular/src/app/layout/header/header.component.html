@@ -1,0 +1,22 @@
+<header class="app-header">
+  <div class="brand">TaskManager</div>
+
+  <nav *ngIf="auth.isLoggedIn()">
+    <a routerLink="/projects" routerLinkActive="active">Проекты</a>
+    <a routerLink="/tasks" routerLinkActive="active">Задачи</a>
+    <a routerLink="/users" routerLinkActive="active">Пользователи</a>
+  </nav>
+
+  <div class="spacer"></div>
+
+  <ng-container *ngIf="auth.isLoggedIn(); else loginTpl">
+    <span class="user">
+      {{ auth.getUser()?.firstName }} {{ auth.getUser()?.lastName }}
+    </span>
+    <button type="button" (click)="logout()">Выйти</button>
+  </ng-container>
+
+  <ng-template #loginTpl>
+    <a routerLink="/login">Войти</a>
+  </ng-template>
+</header>
